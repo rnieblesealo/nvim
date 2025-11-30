@@ -1,0 +1,37 @@
+return {
+	{
+		"williamboman/mason.nvim",
+		config = function()
+      require("mason").setup()
+    end
+	},
+	{
+		"williamboman/mason-lspconfig.nvim",
+		config = function() 
+      require("mason-lspconfig").setup()
+    end
+	},
+	{
+		"neovim/nvim-lspconfig",
+		config = function()
+      -- LSP KEYBINDS
+      vim.keymap.set("n", "<leader>x", vim.lsp.buf.hover, {}) -- Hover info 
+      vim.keymap.set("n", "<leader>z", vim.lsp.buf.hover, {}) -- Go to definition 
+      vim.keymap.set("n", "<leader>c", vim.lsp.buf.hover, {}) -- Code actions 
+      vim.keymap.set("n", "<leader>e", vim.lsp.buf.hover, {}) -- Error view 
+
+      -- LSP DIAGNOSTIC WINDOW 
+      vim.diagnostic.config({
+        severity_sort = true,
+        signs = false,
+        underline = true,
+        update_in_insert = false,
+        virtual_text = true,
+      })
+
+      -- LSP CONFIGURATION
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local lspconfig = require("lspconfig")
+    end
+  },
+}
