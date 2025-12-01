@@ -23,9 +23,8 @@ return {
 		}
 
 		-- Announce the modified folding capability to each language server
-		local language_servers = require("lspconfig").util.available_servers()
-		for _, language_server in ipairs(language_servers) do
-			require("lspconfig")[language_server].setup({
+		for server_name, _ in pairs(vim.lsp.config._configs) do
+			vim.lsp.config(server_name, {
 				capabilities = capabilities,
 			})
 		end

@@ -2,36 +2,59 @@ return {
 	{
 		"williamboman/mason.nvim",
 		config = function()
-      require("mason").setup()
-    end
+			require("mason").setup()
+		end,
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
-		config = function() 
-      require("mason-lspconfig").setup()
-    end
+		config = function()
+			require("mason-lspconfig").setup()
+		end,
 	},
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-      -- LSP KEYBINDS
-      vim.keymap.set("n", "<leader>x", vim.lsp.buf.hover, {}) -- Hover info 
-      vim.keymap.set("n", "<leader>z", vim.lsp.buf.hover, {}) -- Go to definition 
-      vim.keymap.set("n", "<leader>c", vim.lsp.buf.hover, {}) -- Code actions 
-      vim.keymap.set("n", "<leader>e", vim.lsp.buf.hover, {}) -- Error view 
+			-- LSP KEYBINDS
+			vim.keymap.set("n", "<leader>x", vim.lsp.buf.hover, {}) -- Hover info
+			vim.keymap.set("n", "<leader>z", vim.lsp.buf.hover, {}) -- Go to definition
+			vim.keymap.set("n", "<leader>c", vim.lsp.buf.hover, {}) -- Code actions
+			vim.keymap.set("n", "<leader>e", vim.lsp.buf.hover, {}) -- Error view
 
-      -- LSP DIAGNOSTIC WINDOW 
-      vim.diagnostic.config({
-        severity_sort = true,
-        signs = false,
-        underline = true,
-        update_in_insert = false,
-        virtual_text = true,
-      })
+			-- LSP DIAGNOSTIC WINDOW
+			vim.diagnostic.config({
+				severity_sort = true,
+				signs = false,
+				underline = true,
+				update_in_insert = false,
+				virtual_text = true,
+			})
 
-      -- LSP CONFIGURATION
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
-      local lspconfig = require("lspconfig")
-    end
-  },
+			-- LSP CONFIGURATION
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+			vim.lsp.config("lua_ls", {
+				capabilities = capabilities,
+				settings = {
+					Lua = {
+						diagnostics = {
+							globals = { "vim" },
+						},
+					},
+				},
+			})
+
+			vim.lsp.config("pylsp", {
+				capabilities = capabilities,
+				settings = {
+					pylsp = {
+						plugins = {
+							pycodestyle = {
+								maxLineLength = 120,
+							},
+						},
+					},
+				},
+			})
+		end,
+	},
 }
