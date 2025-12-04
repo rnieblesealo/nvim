@@ -21,7 +21,7 @@ return {
 			},
 			on_highlights = nil,
 			on_colors = nil,
-			palette = "solarized", -- "solarized" (default) | "selenized"
+			palette = "selenized", -- "solarized" (default) | "selenized"
 			variant = "winter", -- "spring" | "summer" | "autumn" | "winter" (default)
 			error_lens = {
 				text = false,
