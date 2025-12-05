@@ -19,6 +19,7 @@ return {
 			vim.keymap.set("n", "<leader>z", vim.lsp.buf.hover, {}) -- Go to definition
 			vim.keymap.set("n", "<leader>c", vim.lsp.buf.hover, {}) -- Code actions
 			vim.keymap.set("n", "<leader>e", vim.lsp.buf.hover, {}) -- Error view
+			vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {}) -- Rename variable
 
 			-- LSP DIAGNOSTIC WINDOW
 			vim.diagnostic.config({
