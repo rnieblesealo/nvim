@@ -16,9 +16,9 @@ return {
 		config = function()
 			-- LSP KEYBINDS
 			vim.keymap.set("n", "<leader>x", vim.lsp.buf.hover, {}) -- Hover info
-			vim.keymap.set("n", "<leader>z", vim.lsp.buf.hover, {}) -- Go to definition
-			vim.keymap.set("n", "<leader>c", vim.lsp.buf.hover, {}) -- Code actions
-			vim.keymap.set("n", "<leader>e", vim.lsp.buf.hover, {}) -- Error view
+			vim.keymap.set("n", "<leader>z", vim.lsp.buf.definition, {}) -- Go to definition
+			vim.keymap.set("n", "<leader>c", vim.lsp.buf.code_action, {}) -- Code actions
+			vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { noremap = true }) -- Error view
 			vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {}) -- Rename variable
 
 			-- LSP DIAGNOSTIC WINDOW
