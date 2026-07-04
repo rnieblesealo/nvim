@@ -1,22 +1,24 @@
-local function fix_nvimtree_colors()
-  -- make nvimtree window style match telescope window style ( white )
-  -- normally it just looks gray so the borders dont blend with bg
-
-  vim.api.nvim_set_hl(0, 'NvimTreeNormal', { link = 'Normal' })
-  vim.api.nvim_set_hl(0, 'NvimTreeNormalFloat', { link = 'Normal' })
-  vim.api.nvim_set_hl(0, 'FloatBorder', { link = 'Grey' })
-
-  local normal_bg = vim.api.nvim_get_hl(0, { name = 'Normal' }).bg
-  vim.api.nvim_set_hl(0, 'NvimTreeEndOfBuffer', { fg = normal_bg }) -- fix gray tildes ( makes them white )
-end
-
-return {
-  'sainnhe/edge',
+return
+{
+  "Mofiqul/adwaita.nvim",
   lazy = false,
   priority = 1000,
+
+  -- configure and set on startup
   config = function()
     vim.opt.background = "light"
-    vim.cmd.colorscheme("edge")
-    fix_nvimtree_colors()
+
+    vim.g.adwaita_darker = false            -- for darker version
+    vim.g.adwaita_disable_cursorline = true -- to disable cursorline
+    vim.g.adwaita_transparent = false       -- makes the background transparent
+
+    vim.cmd('colorscheme adwaita')
+
+    -- match nvimtree floating window background/border to telescope
+    vim.api.nvim_set_hl(0, "NvimTreeNormalFloat", { link = "TelescopeNormal" })
+    vim.api.nvim_set_hl(0, "NvimTreeNormalFloatBorder", { link = "TelescopeBorder" })
+
+    -- make nvimtree cursor line match the normal-mode statusline
+    vim.api.nvim_set_hl(0, "NvimTreeCursorLine", { link = "StatusLine" })
   end
 }
