@@ -11,8 +11,10 @@ vim.opt.shiftwidth = 2
 vim.opt.number = true
 
 vim.opt.guicursor = "n-v-c:block-Cursor"
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "90"
 
 -- disable netrw ( for nvim tree: https://github.com/nvim-tree/nvim-tree.lua#setup )
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
+vim.opt.termguicolors = true -- enable 24bit color

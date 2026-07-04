@@ -8,6 +8,7 @@ local function set_mappings() -- sets nvimtree mappings for any buffer
 
   vim.keymap.set("n", "<leader>n", api.tree.toggle, opts) -- open with leader + n
   vim.keymap.set("n", "q", api.tree.close, opts)          -- close with q
+  vim.keymap.set("n", "<escape>", api.tree.close, opts)   -- close with esc
 end
 
 return {

@@ -1,9 +1,22 @@
+local function fix_nvimtree_colors()
+  -- make nvimtree window style match telescope window style ( white )
+  -- normally it just looks gray so the borders dont blend with bg
+
+  vim.api.nvim_set_hl(0, 'NvimTreeNormal', { link = 'Normal' })
+  vim.api.nvim_set_hl(0, 'NvimTreeNormalFloat', { link = 'Normal' })
+  vim.api.nvim_set_hl(0, 'FloatBorder', { link = 'Grey' })
+
+  local normal_bg = vim.api.nvim_get_hl(0, { name = 'Normal' }).bg
+  vim.api.nvim_set_hl(0, 'NvimTreeEndOfBuffer', { fg = normal_bg }) -- fix gray tildes ( makes them white )
+end
+
 return {
-  'projekt0n/github-nvim-theme',
-  name = 'github-theme',
-  lazy = false,    -- make sure we load this during startup if it is your main colorscheme
-  priority = 1000, -- make sure to load this before all the other start plugins
+  'sainnhe/edge',
+  lazy = false,
+  priority = 1000,
   config = function()
-    vim.cmd('colorscheme github_light')
-  end,
+    vim.opt.background = "light"
+    vim.cmd.colorscheme("edge")
+    fix_nvimtree_colors()
+  end
 }
